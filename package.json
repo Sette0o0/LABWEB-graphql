@@ -7,17 +7,31 @@
     "dev": "tsx watch src/index.ts",
     "build": "tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json",
     "dist": "node dist/index.js",
-    "test": "vitest run"
+    "test": "vitest run",
+    "prisma": "npx prisma migrate dev && npx prisma generate",
+    "prisma:seed": "npx prisma db seed",
+    "start": "npm run prisma && npm run prisma:seed && npm run dev"
   },
   "dependencies": {
-    "dotenv": "^17.4.2"
+    "@prisma/adapter-better-sqlite3": "^7.10.0",
+    "@prisma/client": "^7.10.0",
+    "dotenv": "^17.4.2",
+    "fastify": "^5.12.3",
+    "graphql": "^16.14.2",
+    "mercurius": "^16.10.0"
   },
   "devDependencies": {
+    "@types/better-sqlite3": "^9.6.0",
     "@types/node": "26.4.1",
     "nodemon": "3.1.14",
+    "prisma": "^7.10.0",
     "tsc-alias": "1.9.4",
     "tsx": "4.23.13",
     "typescript": "7.0.2",
     "vitest": "4.1.11"
+  },
+  "graphql": {
+    "schema": "https://localhost:3001/graphql",
+    "documents": "**/*.{graphql,js,ts,jsx,tsx}"
   }
 }
